@@ -30,7 +30,7 @@ Parameters:
     Description: The Size in GB of the Cloud9 Instance Volume. 
     Default: 15
   CDKVersion:
-    Type: Number
+    Type: String
     Description: The Number of CDK Version.
     Default: 1.134.1
 
