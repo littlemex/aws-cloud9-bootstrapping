@@ -1,8 +1,7 @@
 #!/bin/bash
 # Simple bash for Demoset C9 Deployment. 
 # NOT FOR PRODUCTION USE - Only for Demoset purposes
-#C9STACK="DemosetC9"
-C9STACK="C9-Observability-Workshop"
+C9STACK="DemosetC9"
 CFNFILE="cloud9-cfn.yaml"
 PROFILE=$2
 REGION=$1 
@@ -25,12 +24,12 @@ is_exist=$(aws cloudformation describe-stacks --stack-name $C9STACK >& /dev/null
 if [ $? -eq 0 ]; then
   echo "[UPDATE] Stack $C9STACK is already exist."
   aws cloudformation update-stack --stack-name $C9STACK --template-body file://$CFNFILE --capabilities CAPABILITY_NAMED_IAM
-  echo aws cloudformation wait stack-update-complete --stack-name $C9STACK
+  aws cloudformation wait stack-update-complete --stack-name $C9STACK
   echo "Cloud9 Instance is Updated!!!"
 else
   echo "[CREATE] Stack $C9STACK is not exist."
-  echo aws cloudformation create-stack --stack-name $C9STACK --template-body file://$CFNFILE --capabilities CAPABILITY_NAMED_IAM
-  echo aws cloudformation wait stack-create-complete --stack-name $C9STACK
+  aws cloudformation create-stack --stack-name $C9STACK --template-body file://$CFNFILE --capabilities CAPABILITY_NAMED_IAM
+  aws cloudformation wait stack-create-complete --stack-name $C9STACK
   echo "Cloud9 Instance is Ready!!!"
 fi
 

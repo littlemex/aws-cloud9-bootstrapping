@@ -519,6 +519,8 @@ Resources:
             runCommand:
             - "#!/bin/bash"
             - date
+            - !Sub SIZE=${C9InstanceVolumeSize}
+            - !Sub REGION=${AWS::Region}
             - echo LANG=en_US.utf-8 >> /etc/environment
             - echo LC_ALL=en_US.UTF-8 >> /etc/environment
             - . /home/ec2-user/.bashrc
@@ -531,8 +533,6 @@ Resources:
             - echo '=== INSTALL and CONFIGURE IaC Tools ==='
             - sudo -H -u ec2-user bash -c ". ~/.nvm/nvm.sh && npm install -g aws-cdk"
             - echo '=== Resizing the Instance volume'
-            - !Sub SIZE=${C9InstanceVolumeSize}
-            - !Sub REGION=${AWS::Region}
             - |
               INSTANCEID=$(curl http://169.254.169.254/latest/meta-data/instance-id)
               VOLUMEID=$(aws ec2 describe-instances \
