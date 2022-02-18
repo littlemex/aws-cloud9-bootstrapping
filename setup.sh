@@ -21,6 +21,8 @@ fi
 echo Building $PROFILE C9
 
 # build the c9 environment
-aws cloudformation deploy  --stack-name $C9STACK --capabilities CAPABILITY_IAM --template ./cloud9-cfn.yaml
+aws cloudformation create-stack --stack-name C9-Observability-Workshop --template-body file://cloud9-cfn.yaml --capabilities CAPABILITY_NAMED_IAM
+aws cloudformation wait stack-create-complete --stack-name C9-Observability-Workshop
+echo "Cloud9 Instance is Ready!!"
 
 exit 0 
