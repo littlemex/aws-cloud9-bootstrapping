@@ -21,6 +21,6 @@ fi
 echo Building $PROFILE C9
 
 # build the c9 environment
-aws cloudformation deploy  --stack-name $C9STACK --capabilities CAPABILITY_IAM --template ./example_instancestack.yaml
+aws cloudformation deploy  --stack-name $C9STACK --capabilities CAPABILITY_IAM --template ./cloud9-cfn.yaml
 
 exit 0 
